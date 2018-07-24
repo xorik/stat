@@ -1,16 +1,20 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import WeeklyStat from "./views/WeeklyStat";
+import Settings from "./views/Settings";
 
 Vue.use(Router);
 
 export default new Router({
-  html5mode: true,
+  mode: "history",
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      component: WeeklyStat
+    },
+    {
+      path: "/settings",
+      component: Settings
     }
   ]
 });

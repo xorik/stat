@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap": "^4.1.2",
     "bootswatch": "^4.1.2",
+    "moment": "^2.22.2",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -22,6 +23,7 @@
     "lint-staged": "^7.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "vue-cli-plugin-pug": "^1.0.5",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
@@ -33,9 +35,12 @@
       "plugin:vue/essential",
       "@vue/prettier"
     ],
-    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/attributes-order": "error",
+      "vue/order-in-components": "error"
     }
   },
   "postcss": {
