@@ -4,42 +4,34 @@
     .form-row.form-group
       .col-md-2 Working hours:
       .col
-        input.form-control(type="text" v-model="data.workingHours[0]")
+        input.form-control(type="number" v-model="data.workingHours[0]")
       .col
-        input.form-control(type="text" v-model="data.workingHours[1]")
+        input.form-control(type="number" v-model="data.workingHours[1]")
     .form-row.form-group(v-for="(day, index) in days")
       .col-md-2.col-12 {{day}}
       .col
-        TimeRange(v-model="data.plan[index]")
+        input.custom-range(type="range" min="0" max="720" step="30" v-model.number="data.plan[index]")
       .col-auto.text-right {{data.plan[index] | time }}
 
     div.text-right
       button.btn.btn-primary(@click="save") Save
 
 </template>
-<script>
-import time from "@/filters/time";
-import TimeRange from "@/components/TimeRange";
-import store from "@/store";
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import cloneDeep from 'lodash/cloneDeep'
+import time from '@/filters/time'
+import store from '@/store'
 
-export default {
-  components: { TimeRange },
+@Component({
+    filters: { time },
+})
+export default class Settings extends Vue {
+  public data: ISettings = cloneDeep(store.state.settings)
+  public days: string[] = 'Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday'.split('_')
 
-  filters: { time },
-
-  data() {
-    return {
-      data: store.state.settings,
-      days: "Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday".split(
-        "_"
-      )
-    };
-  },
-
-  methods: {
-    save: function() {
-      store.commit("saveSettings", this.data);
-    }
+  public save(): void {
+    store.commit('saveSettings', cloneDeep(this.data))
   }
-};
+}
 </script>

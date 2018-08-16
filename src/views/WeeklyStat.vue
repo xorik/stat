@@ -1,33 +1,49 @@
 <template lang="pug">
   div
-    DailyStat(:value="stat.totalStat" :mins="totalMins")
-    DailyStat(v-for="(s, index) in stat.dailyStat" :dayIndex="index" :value="s" :mins="daily[index]")
+    TotalStat(:value="stat.totalStat" :mins="doneMins" :diff="stat.diff" :total="planMins")
+    DailyStat(v-for="(s, index) in stat.dailyStat" :key="index" :dayIndex="index" :value="s" :mins="daily[index]")
 </template>
 
-<script>
-import DailyStat from "@/components/DailyStat";
-import TimeCalc from "@/service/TimeCalc";
-import store from "@/store";
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import DailyStat from '@/components/DailyStat.vue'
+import TotalStat from '@/components/TotalStat.vue'
+import TimeCalc from '@/service/TimeCalc'
+import store from '@/store'
 
-export default {
-  components: { DailyStat },
+const UPDATE_INTERVAL = 10 * 1000
 
-  computed: {
-    daily: function() {
-      return store.state.stat;
-    },
+@Component({
+    components: { DailyStat, TotalStat },
+})
+export default class WeeklyStat extends Vue {
+  protected now: number = 0
 
-    stat: function() {
-      return TimeCalc.getProgress(
-        store.state.settings.plan,
-        store.state.stat,
-        store.state.settings.workingHours
-      );
-    },
-
-    totalMins: function() {
-      return this.daily.reduce((accum, current) => accum + current, 0);
-    }
+  public created(): void {
+      setInterval(() => {
+          this.now++
+      }, UPDATE_INTERVAL)
   }
-};
+
+  get daily(): Array<number | null> {
+    return store.state.stat
+  }
+
+  get stat(): IStat {
+    let x = this.now; // tslint:disable-line
+    return TimeCalc.getProgress(
+      store.state.settings.plan,
+      store.state.stat,
+      store.state.settings.workingHours,
+    )
+  }
+
+  get doneMins(): number {
+    return this.daily.reduce((accum: number, current: number | null): number => accum + (current ? current : 0), 0)
+  }
+
+  get planMins(): number {
+      return store.state.settings.plan.reduce((accum: number, current: number): number => accum + current, 0)
+  }
+}
 </script>

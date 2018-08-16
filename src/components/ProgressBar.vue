@@ -5,25 +5,25 @@
     .progress-bar(:style="style")
 
 </template>
-<script>
-import ProgressColor from "./ProgressColor";
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import ProgressColor from './ProgressColor'
 
-export default {
-  props: ["value"],
+@Component
+export default class ProgressBar extends Vue {
+  @Prop({type: Number, required: true}) public value!: number
 
-  computed: {
-    displayValue: function() {
-      return (this.value * 100).toFixed(1);
-    },
+  get displayValue(): string {
+    return (this.value * 100).toFixed(1)
+  }
 
-    style: function() {
-      return {
-        width: this.value * 100 + "%",
-        backgroundColor: ProgressColor(this.value)
-      };
+  get style(): object {
+    return {
+      width: (this.value / 1.2) * 100 + '%',
+      backgroundColor: ProgressColor(this.value),
     }
   }
-};
+}
 </script>
 <style lang="scss">
 .progress {

@@ -2,32 +2,30 @@
   div
     .row
       label.col {{ title }}
-      .col.text-right {{ mins | time }}
+      .col.text-right(v-if="value !== null") {{ mins | time }}
     .row
       .col
         ProgressBar(v-if="value !== null" :value="value")
-        .progress(v-else="" style="opacity: 0.3")
+        .progress(v-else="")
     hr
 </template>
 
-<script>
-import ProgressBar from "@/components/ProgressBar";
-import time from "@/filters/time";
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import ProgressBar from '@/components/ProgressBar.vue'
+import time from '@/filters/time'
 
-const WEEK_DAYS = "Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday".split(
-  "_"
-);
+const WEEK_DAYS = 'Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday'.split('_')
 
-export default {
+@Component({
   components: { ProgressBar },
-
   filters: { time },
-  props: ["dayIndex", "value", "mins"],
+})
+export default class DailyStat extends Vue {
+  @Prop({type: Number, required: true}) public dayIndex!: number
+  @Prop({type: Number, required: false}) public value!: number
+  @Prop({type: Number, required: true}) public mins!: number
 
-  data: function() {
-    return {
-      title: this.dayIndex !== undefined ? WEEK_DAYS[this.dayIndex] : "Total"
-    };
-  }
-};
+  public title: string = WEEK_DAYS[this.dayIndex]
+}
 </script>
