@@ -1,12 +1,21 @@
-class UpworkStatSocketService {
-  constructor(callback: (this: WebSocket, ev: MessageEvent) => any) {
-    const socket = new WebSocket('wss://stat.xorik.ru/ws/')
+import ReconnectingWebsocket, {WebsocketStatus} from '@/service/ReconnectingWebsocket'
+import store from '@/store'
 
-    socket.onopen = (): void => {
-      socket.send('CLIENT')
-    }
+class UpworkStatSocketService extends ReconnectingWebsocket {
+  constructor() {
+    super('wss://stat.xorik.ru/ws/')
+  }
 
-    socket.onmessage = callback
+  protected connectCallback(socket: WebSocket): void {
+    socket.send('CLIENT')
+  }
+
+  protected messageCallback(socket: WebSocket, response: string): void {
+    store.commit('updateStat', JSON.parse(response))
+  }
+
+  protected statusCallback(status: WebsocketStatus): void {
+    store.commit('updateNetworkStatus', status)
   }
 }
 

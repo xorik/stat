@@ -6,10 +6,8 @@ import UpworkStatSocketService from '@/service/UpworkStatSocketService'
 
 Vue.config.productionTip = false
 
-// tslint:disable-next-line
-new UpworkStatSocketService((response) => {
-  store.commit('updateStat', JSON.parse(response.data))
-})
+const statService = new UpworkStatSocketService()
+statService.start()
 
 new Vue({
   router,
