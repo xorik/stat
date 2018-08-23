@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.progress
+  div.progress(:class="{big: big}")
     span.progress-value
       | {{displayValue}} %
     .progress-bar(:style="style")
@@ -12,6 +12,7 @@ import ProgressColor from './ProgressColor'
 @Component
 export default class ProgressBar extends Vue {
   @Prop({type: Number, required: true}) public value!: number
+  @Prop({type: Boolean, required: false, default: false}) public big!: boolean
 
   get displayValue(): string {
     return (this.value * 100).toFixed(1)
@@ -33,6 +34,15 @@ export default class ProgressBar extends Vue {
     left: 0;
     right: 0;
     color: #fff;
+  }
+
+  &.big {
+    height: 1.5rem;
+    font-size: 0.8rem;
+
+    span.progress-value {
+      line-height: 1.5rem;
+    }
   }
 }
 </style>

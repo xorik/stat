@@ -11,7 +11,7 @@
         b(:style="{color: textColor}") {{ diff | time }}
     .row
       .col
-        ProgressBar(v-if="value !== null" :value="value")
+        ProgressBar(v-if="value !== null" :value="value" :big="true")
         .progress(v-else="")
     hr
 </template>
