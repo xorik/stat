@@ -8,3 +8,15 @@ interface IStat {
     totalStat: number,
     diff: number
 }
+
+declare module 'fullscreen' {
+  interface FullscreenObject {
+    request: () => void
+  }
+
+  type Fullscreen = (el: Node) => FullscreenObject
+
+  let fullscreen: Fullscreen
+
+  export default fullscreen
+}

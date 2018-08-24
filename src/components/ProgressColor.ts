@@ -1,9 +1,9 @@
-export default function(value: number): string {
-  const RED = '#ee5f5b'
-  const YELLOW = '#c6bf00'
-  const ORANGE = '#fd7e14'
-  const GREEN = '#62c462'
+export const RED = '#ee5f5b'
+export const YELLOW = '#c6bf00'
+export const ORANGE = '#fd7e14'
+export const GREEN = '#62c462'
 
+export default function(value: number): string {
   const blend = (color1: string, color2: string, ratio: number): string => {
     const hex = (x: number): string => {
       const s = x.toString(16)

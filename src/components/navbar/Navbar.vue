@@ -1,0 +1,47 @@
+<template lang="pug">
+  nav.navbar.navbar-expand.fixed-top.navbar-dark.bg-secondary.my-padding.justify-content-between
+    .container
+
+      router-link.navbar-brand(to="/")
+        i.fas.fa-chart-bar
+        |
+        | Stat
+
+      ul.navbar-nav.mr-auto
+        router-link.nav-item(to="/" tag="li")
+          a.nav-link Home
+        router-link.nav-item(to="/settings" tag="li")
+          a.nav-link Settings
+
+      NetworkStatus
+
+      button.btn.btn-dark.border.border-secondary(@click="fullscreen()")
+        i.far.fa-window-maximize.fa-lg
+</template>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import fullscreen from 'fullscreen'
+import NetworkStatus from '@/components/navbar/NetworkStatus.vue'
+
+@Component({
+  components: { NetworkStatus },
+})
+export default class Navbar extends Vue {
+  public fullscreen(): void {
+    const fs = fullscreen(document.getElementsByTagName('html')[0])
+    fs.request()
+  }
+}
+</script>
+
+<style type="scss">
+  body {
+    padding-top: 4rem;
+  }
+
+  .navbar.my-padding {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+</style>

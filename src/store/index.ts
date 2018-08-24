@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import Vuex, {Module, MutationTree} from 'vuex'
+import Vuex, {Store} from 'vuex'
 import SettingsService from '@/service/SettingsService'
 import State from '@/store/State'
 import {WebsocketStatus} from '@/service/ReconnectingWebsocket'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const vuexStore: Store<State> = new Vuex.Store({
   strict: true,
   state: new State(),
   mutations: {
@@ -24,3 +24,5 @@ export default new Vuex.Store({
       },
   },
 })
+
+export default vuexStore
