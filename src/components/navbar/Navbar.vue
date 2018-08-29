@@ -15,17 +15,20 @@
 
       NetworkStatus
 
-      button.btn.btn-dark.border.border-secondary(@click="fullscreen()")
-        i.far.fa-window-maximize.fa-lg
+      .btn-group.d-flex.d-sm-none
+        NoSleepButton
+        button.btn.btn-dark.border.border-secondary(@click="fullscreen()")
+          i.far.fa-window-maximize.fa-lg
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import fullscreen from 'fullscreen'
 import NetworkStatus from '@/components/navbar/NetworkStatus.vue'
+import NoSleepButton from '@/components/navbar/NoSleepButton.vue'
 
 @Component({
-  components: { NetworkStatus },
+  components: { NetworkStatus, NoSleepButton },
 })
 export default class Navbar extends Vue {
   public fullscreen(): void {

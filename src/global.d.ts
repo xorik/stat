@@ -20,3 +20,9 @@ declare module 'fullscreen' {
 
   export default fullscreen
 }
+
+declare module '@/../node_modules/nosleep.js/src/media' {
+  let src: string
+
+  export default src
+}
