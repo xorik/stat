@@ -11,7 +11,7 @@ class UpworkStatSocketService extends ReconnectingWebsocket {
   }
 
   protected messageCallback(socket: WebSocket, response: string): void {
-    store.commit('updateStat', JSON.parse(response))
+    store.commit('updateUpworkStat', JSON.parse(response))
   }
 
   protected statusCallback(status: WebsocketStatus): void {

@@ -15,8 +15,8 @@ const vuexStore: Store<State> = new Vuex.Store({
           store.settings = newSettings
       },
 
-      updateStat(store: State, newStat: number[]): void {
-          store.stat = newStat
+      updateUpworkStat(store: State, newStat: number[]): void {
+          store.upworkStat = newStat
       },
 
       updateNetworkStatus(store: State, status: WebsocketStatus): void {
