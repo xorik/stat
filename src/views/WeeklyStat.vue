@@ -26,14 +26,14 @@ export default class WeeklyStat extends Vue {
   }
 
   get daily(): Array<number | null> {
-    return store.state.upworkStat
+    return store.getters.stat
   }
 
   get stat(): IStat {
     let x = this.now; // tslint:disable-line
     return TimeCalc.getProgress(
       store.state.settings.plan,
-      store.state.upworkStat,
+      store.getters.stat,
       store.state.settings.workingHours,
     )
   }

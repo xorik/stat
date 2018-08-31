@@ -19,9 +19,24 @@ const vuexStore: Store<State> = new Vuex.Store({
           store.upworkStat = newStat
       },
 
+      updateTogglStat(store: State, newStat: number[]): void {
+        store.togglStat = newStat
+      },
+
       updateNetworkStatus(store: State, status: WebsocketStatus): void {
         store.networkStatus = status
       },
+  },
+  getters: {
+    stat(state: State): number[] {
+      const out: number[] = []
+
+      for (let i = 0; i < 7; i++) {
+        out[i] = state.upworkStat[i] + state.togglStat[i]
+      }
+
+      return out
+    },
   },
 })
 

@@ -5,9 +5,9 @@ export default function(mins: number): string {
     mins = -mins
   }
 
+  mins = Math.round(mins)
   const hours: number = Math.floor(mins / 60)
   mins -= hours * 60
-  mins = Math.round(mins)
   const m: string = mins > 9 ? mins.toString() : `0${mins}`
 
   const sign = negative ? '-' : ''
