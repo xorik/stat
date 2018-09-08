@@ -17,7 +17,7 @@ const UPDATE_INTERVAL = 10 * 1000
     components: { DailyStat, TotalStat },
 })
 export default class WeeklyStat extends Vue {
-  protected now: number = 0
+  protected now = 0
 
   public created(): void {
       setInterval(() => {

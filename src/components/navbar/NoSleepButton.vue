@@ -14,7 +14,7 @@ import videoSrc from '@/../node_modules/nosleep.js/src/media'
 
 @Component
 export default class NoSleepButton extends Vue {
-  private locked: boolean = false
+  private locked = false
   private src: string = videoSrc
 
   public switchLock(): void {
