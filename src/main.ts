@@ -11,8 +11,8 @@ Vue.config.productionTip = false
 const statService = new UpworkStatSocketService()
 statService.start()
 
-if (process.env.TOGGL_KEY) {
-  const toggl = new TogglStatService(process.env.TOGGL_KEY)
+if (process.env.VUE_APP_TOGGL_KEY) {
+  const toggl = new TogglStatService(process.env.VUE_APP_TOGGL_KEY)
   toggl.start()
 }
 
