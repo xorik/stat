@@ -3,13 +3,11 @@
     .container
 
       router-link.navbar-brand(to="/")
-        i.fas.fa-chart-bar
+        i.fas.fa-signal(style="transform: rotate(90deg) scaleX(-1)")
         |
         | Stat
 
       ul.navbar-nav.mr-auto
-        router-link.nav-item(to="/" tag="li")
-          a.nav-link Home
         router-link.nav-item(to="/settings" tag="li")
           a.nav-link Settings
 
