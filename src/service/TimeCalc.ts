@@ -18,9 +18,11 @@ class TimeCalc {
       }
       totalDone += done[i]
 
-      // Day is ended
-      if (now.isAfter(dayEnd)) {
-        dailyStat[i] = planed[i] > 0 ? done[i] / planed[i] : null
+      if (planed[i] === 0) {
+        dailyStat[i] = (done[i] > 0) ? 1 : null
+      } else if (now.isAfter(dayEnd)) {
+        // Day is ended
+        dailyStat[i] = done[i] / planed[i]
         plannedByNow += planed[i]
       } else if (now.isBefore(dayStart)) {
         // Day isn't started
