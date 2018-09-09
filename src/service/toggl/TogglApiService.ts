@@ -1,7 +1,6 @@
-import axios, {AxiosInstance, AxiosPromise, AxiosResponse} from 'axios'
-import {Moment} from 'moment'
+import axios, {AxiosInstance, AxiosResponse} from 'axios'
 
-const API_URL = '/toggl_api/'
+const API_URL = 'https://toggl.com/api/v8/'
 
 export interface TimeEntry {
   id: number,
