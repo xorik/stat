@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './registerServiceWorker'
 import UpworkStatSocketService from '@/service/UpworkStatSocketService'
 import TogglStatService from '@/service/toggl/TogglStatService'
 
