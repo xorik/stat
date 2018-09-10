@@ -7,6 +7,8 @@
         input.form-control(type="number" v-model="data.workingHours[0]")
       .col
         input.form-control(type="number" v-model="data.workingHours[1]")
+
+    h6 Total planned time: {{ planMins | time }}
     .form-row.form-group(v-for="(day, index) in days")
       .col-md-2.col-12 {{day}}
       .col
@@ -32,6 +34,10 @@ export default class Settings extends Vue {
 
   public save(): void {
     store.commit('saveSettings', cloneDeep(this.data))
+  }
+
+  get planMins(): number {
+    return this.data.plan.reduce((accum: number, current: number): number => accum + current, 0)
   }
 }
 </script>
