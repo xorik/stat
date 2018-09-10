@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    h3 Settings
+    h5 Settings
     .form-row.form-group
       .col-md-2 Working hours:
       .col
@@ -11,7 +11,7 @@
       .col-md-2.col-12 {{day}}
       .col
         input.custom-range(type="range" min="0" max="720" step="30" v-model.number="data.plan[index]")
-      .col-auto.text-right {{data.plan[index] | time }}
+      .col-auto.text-right {{ data.plan[index] | time }}
 
     div.text-right
       button.btn.btn-primary(@click="save") Save

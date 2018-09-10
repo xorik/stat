@@ -37,11 +37,12 @@ export default class ProgressBar extends Vue {
   }
 
   &.big {
-    height: 1.5rem;
-    font-size: 0.8rem;
+    height: 1.8rem;
+    font-size: 1rem;
+    font-weight: bold;
 
     span.progress-value {
-      line-height: 1.5rem;
+      line-height: 1.8rem;
     }
   }
 }

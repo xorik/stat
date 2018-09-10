@@ -1,8 +1,9 @@
 <template lang="pug">
   div
     .row
-      label.col Total
-      .col.text-center.text-muted
+      label.col
+        b Total
+      b.col.text-center
         | {{ mins | time }}
         | /
         | {{ total | time }}
