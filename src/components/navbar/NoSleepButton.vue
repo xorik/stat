@@ -5,7 +5,10 @@
       i.fas.fa-lock-open.fa-lg(v-else)
 
     video(loop style="display: none")
-      source(:src="src" type="video/mp4")
+      source(
+        :src="src"
+        type="video/mp4"
+      )
 </template>
 
 <script lang="ts">

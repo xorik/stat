@@ -11,8 +11,18 @@ import ProgressColor from './ProgressColor'
 
 @Component
 export default class ProgressBar extends Vue {
-  @Prop({type: Number, required: true}) public value!: number
-  @Prop({type: Boolean, required: false, default: false}) public big!: boolean
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public value!: number
+
+  @Prop({
+    type: Boolean,
+    required: false,
+    default: false,
+  })
+  public big!: boolean
 
   get displayValue(): string {
     return (this.value * 100).toFixed(1)

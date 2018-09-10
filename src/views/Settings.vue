@@ -4,15 +4,27 @@
     .form-row.form-group
       .col-md-2 Working hours:
       .col
-        input.form-control(type="number" v-model="data.workingHours[0]")
+        input.form-control(
+          type="number"
+          v-model="data.workingHours[0]"
+        )
       .col
-        input.form-control(type="number" v-model="data.workingHours[1]")
+        input.form-control(
+          type="number"
+          v-model="data.workingHours[1]"
+        )
 
     h6 Total planned time: {{ planMins | time }}
     .form-row.form-group(v-for="(day, index) in days")
       .col-md-2.col-12 {{day}}
       .col
-        input.custom-range(type="range" min="0" max="720" step="30" v-model.number="data.plan[index]")
+        input.custom-range(
+          type="range"
+          min="0"
+          max="720"
+          step="30"
+          v-model.number="data.plan[index]"
+        )
       .col-auto.text-right {{ data.plan[index] | time }}
 
     div.text-right

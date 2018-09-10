@@ -1,7 +1,18 @@
 <template lang="pug">
   div
-    TotalStat(:value="stat.totalStat" :mins="doneMins" :diff="stat.diff" :total="planMins")
-    DailyStat(v-for="(s, index) in stat.dailyStat" :key="index" :dayIndex="index" :value="s" :mins="daily[index]")
+    TotalStat(
+      :value="stat.totalStat"
+      :mins="doneMins"
+      :diff="stat.diff"
+      :total="planMins"
+    )
+    DailyStat(
+      v-for="(s, index) in stat.dailyStat"
+      :key="index"
+      :dayIndex="index"
+      :value="s"
+      :mins="daily[index]"
+    )
 </template>
 
 <script lang="ts">

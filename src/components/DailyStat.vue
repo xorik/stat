@@ -5,7 +5,10 @@
       .col.text-right(v-if="value !== null") {{ mins | time }}
     .row
       .col
-        ProgressBar(v-if="value !== null" :value="value")
+        ProgressBar(
+          v-if="value !== null"
+          :value="value"
+        )
         .progress(v-else="")
     hr
 </template>
@@ -22,9 +25,23 @@ const WEEK_DAYS = 'Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday'.spl
   filters: { time },
 })
 export default class DailyStat extends Vue {
-  @Prop({type: Number, required: true}) public dayIndex!: number
-  @Prop({type: Number, required: false}) public value!: number
-  @Prop({type: Number, required: true}) public mins!: number
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public dayIndex!: number
+
+  @Prop({
+    type: Number,
+    required: false,
+  })
+  public value!: number
+
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public mins!: number
 
   public title: string = WEEK_DAYS[this.dayIndex]
 }

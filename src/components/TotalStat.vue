@@ -12,7 +12,11 @@
         b(:style="{color: textColor}") {{ diff | time }}
     .row
       .col
-        ProgressBar(v-if="value !== null" :value="value" :big="true")
+        ProgressBar(
+          v-if="value !== null"
+          :value="value"
+          :big="true"
+        )
         .progress(v-else="")
     hr
 </template>
@@ -28,10 +32,29 @@ import time from '@/filters/time'
     filters: { time },
 })
 export default class TotalStat extends Vue {
-  @Prop({type: Number, required: true}) public value!: number
-  @Prop({type: Number, required: true}) public mins!: number
-  @Prop({type: Number, required: true}) public total!: number
-  @Prop({type: Number, required: true}) public diff!: number
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public value!: number
+
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public mins!: number
+
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public total!: number
+
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  public diff!: number
 
   get textColor(): string {
       return ProgressColor(this.diff / 300 + 1)
