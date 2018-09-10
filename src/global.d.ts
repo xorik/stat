@@ -9,18 +9,6 @@ interface IStat {
     diff: number
 }
 
-declare module 'fullscreen' {
-  interface FullscreenObject {
-    request: () => void
-  }
-
-  type Fullscreen = (el: Node) => FullscreenObject
-
-  let fullscreen: Fullscreen
-
-  export default fullscreen
-}
-
 declare module '@/../node_modules/nosleep.js/src/media' {
   let src: string
 
