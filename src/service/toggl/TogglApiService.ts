@@ -18,8 +18,8 @@ class TogglApiService {
     }
 
     this.api = axios.create({
-      baseURL: API_URL,
       auth,
+      baseURL: API_URL,
     })
   }
 

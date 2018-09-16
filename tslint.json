@@ -1,7 +1,8 @@
 {
   "defaultSeverity": "warning",
   "extends": [
-    "tslint:recommended"
+    "tslint:recommended",
+    "tslint-consistent-codestyle"
   ],
   "linterOptions": {
     "exclude": [
@@ -26,6 +27,17 @@
       "property-declaration",
       "object-destructuring",
       "array-destructuring"
-    ]
+    ],
+
+    "early-exit": true,
+    "no-as-type-assertion": true,
+    "no-accessor-recursion": true,
+    "no-collapsible-if": true,
+    "no-unnecessary-else": true,
+    "no-static-this": true,
+    "no-var-before-return": true,
+    "object-shorthand-properties-first": true,
+//    "no-unnecessary-type-annotation": true,
+    "prefer-const-enum": true
   }
 }

@@ -15,9 +15,13 @@ export default class NetworkStatus extends Vue {
 
     if (status === 'online') {
       return GREEN
-    } else if (status === 'connecting') {
+    }
+
+    if (status === 'connecting') {
       return YELLOW
-    } else { return RED }
+    }
+
+    return RED
   }
 }
 </script>
