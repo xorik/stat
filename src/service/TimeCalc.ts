@@ -38,7 +38,7 @@ class TimeCalc {
 
         // Working time is not started yet or planned day off
         if (now.isBefore(workStart) || planed[i] === 0) {
-          dailyStat[i] = null
+          dailyStat[i] = (done[i] > 0) ? 1 : null
         } else if (now.isAfter(workEnd)) {
           // Working time is end
           dailyStat[i] = planed[i] > 0 ? done[i] / planed[i] : null

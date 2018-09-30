@@ -8,8 +8,10 @@ import TogglStatService from '@/service/toggl/TogglStatService'
 
 Vue.config.productionTip = false
 
-const statService = new UpworkStatSocketService()
-statService.start()
+if ('WebSocket' in window) {
+  const statService = new UpworkStatSocketService()
+  statService.start()
+}
 
 if (process.env.VUE_APP_TOGGL_KEY) {
   const toggl = new TogglStatService(process.env.VUE_APP_TOGGL_KEY)
