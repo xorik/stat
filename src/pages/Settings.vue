@@ -33,7 +33,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import SettingsService, {Settings} from '@/service/SettingsService'
+import SettingsService, { Settings } from '@/service/SettingsService'
 import time from '@/filters/time'
 
 @Component({

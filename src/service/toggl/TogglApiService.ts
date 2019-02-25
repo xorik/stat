@@ -1,10 +1,10 @@
-import axios, {AxiosInstance, AxiosResponse} from 'axios'
-import {TimeEntry} from '@/service/toggl/TogglWebsocketService'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { TimeEntry } from '@/service/toggl/TogglWebsocketService'
 
 const API_URL = 'https://toggl.com/api/v8/'
 
 interface CurrentApiResponse {
-  data: TimeEntry|null
+  data: TimeEntry | null
 }
 
 class TogglApiService {
@@ -28,7 +28,7 @@ class TogglApiService {
     return response.data
   }
 
-  public async getCurrent(): Promise<TimeEntry|null> {
+  public async getCurrent(): Promise<TimeEntry | null> {
     const response: AxiosResponse<CurrentApiResponse> = await this.api.get('time_entries/current')
 
     return response.data.data

@@ -1,4 +1,4 @@
-import TogglWebsocketService, {TimeEntry, TogglAction, TogglEvent} from '@/service/toggl/TogglWebsocketService'
+import TogglWebsocketService, { TimeEntry, TogglAction, TogglEvent } from '@/service/toggl/TogglWebsocketService'
 import TogglApiService from '@/service/toggl/TogglApiService'
 import TimeEntryStorage from '@/service/toggl/TimeEntryStorage'
 
@@ -22,7 +22,7 @@ class TogglService {
       this.storage.addEntries(entries)
     })
 
-    this.apiService.getCurrent().then((entry: TimeEntry|null) => {
+    this.apiService.getCurrent().then((entry: TimeEntry | null) => {
       if (entry !== null) {
         this.storage.addEntry(entry)
       }

@@ -28,6 +28,19 @@
       "object-destructuring",
       "array-destructuring"
     ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock"
+    ],
 
     "early-exit": true,
     "no-as-type-assertion": true,
@@ -36,7 +49,6 @@
     "no-unnecessary-else": true,
     "no-static-this": true,
     "no-var-before-return": true,
-    "object-shorthand-properties-first": true,
     //    "no-unnecessary-type-annotation": true,
     "prefer-const-enum": true
   }

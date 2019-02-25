@@ -8,7 +8,7 @@ export interface TimeEntry {
   id: number,
   description: string,
   start: string,
-  stop: string|null,
+  stop: string | null,
   duration: number
 }
 

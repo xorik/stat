@@ -1,4 +1,4 @@
-import {TimeEntry} from '@/service/toggl/TogglWebsocketService'
+import { TimeEntry } from '@/service/toggl/TogglWebsocketService'
 
 class TimeEntryStorage {
   protected entries: TimeEntry[] = []
