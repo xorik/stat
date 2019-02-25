@@ -33,6 +33,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { Mutation, State } from 'vuex-class'
 import SettingsService, { Settings } from '@/service/SettingsService'
 import time from '@/filters/time'
 
@@ -40,11 +41,17 @@ import time from '@/filters/time'
     filters: { time },
 })
 export default class SettingsPage extends Vue {
-  public data: Settings = SettingsService.get()
   public days: string[] = 'Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday'.split('_')
+
+  @State('settings')
+  protected data!: Settings
+
+  @Mutation
+  protected setSettings!: (settings: Settings) => void
 
   public save(): void {
     SettingsService.save(this.data)
+    this.setSettings(this.data)
   }
 
   get planMins(): number {
