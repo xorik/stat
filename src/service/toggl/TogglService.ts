@@ -1,6 +1,6 @@
 import TogglWebsocketService, { TimeEntry, TogglAction, TogglEvent } from '@/service/toggl/TogglWebsocketService'
 import TogglApiService from '@/service/toggl/TogglApiService'
-import TimeEntryStorage from '@/service/toggl/TimeEntryStorage'
+import TimeStorage, { TimeEntryStorage } from '@/service/toggl/TimeEntryStorage'
 
 class TogglService {
   protected wsService: TogglWebsocketService
@@ -9,7 +9,7 @@ class TogglService {
 
   constructor(protected token: string) {
     this.apiService = new TogglApiService(token)
-    this.storage = new TimeEntryStorage()
+    this.storage = TimeStorage
     this.wsService = new TogglWebsocketService(token, (event: TogglEvent): void => {
       this.wsCallback(event)
     })

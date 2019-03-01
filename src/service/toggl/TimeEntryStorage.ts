@@ -1,6 +1,6 @@
 import { TimeEntry } from '@/service/toggl/TogglWebsocketService'
 
-class TimeEntryStorage {
+export class TimeEntryStorage {
   protected entries: TimeEntry[] = []
 
   public getEntries(): TimeEntry[] {
@@ -33,4 +33,4 @@ class TimeEntryStorage {
   }
 }
 
-export default TimeEntryStorage
+export default new TimeEntryStorage()
