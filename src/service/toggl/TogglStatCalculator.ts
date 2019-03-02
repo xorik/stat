@@ -1,5 +1,4 @@
 import moment, { Moment } from 'moment'
-import { TimeEntry } from '@/service/toggl/TogglWebsocketService'
 import TimeStorage from '@/service/toggl/TimeEntryStorage'
 
 export default class TogglStatCalculator {

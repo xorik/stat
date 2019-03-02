@@ -50,6 +50,10 @@
     "no-static-this": true,
     "no-var-before-return": true,
     //    "no-unnecessary-type-annotation": true,
-    "prefer-const-enum": true
+    "prefer-const-enum": true,
+    "no-unused": [
+      true,
+      "ignore-parameters"
+    ]
   }
 }
