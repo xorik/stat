@@ -35,6 +35,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import SettingsService, { Settings } from '@/service/SettingsService'
 import time from '@/filters/time'
+import { app } from '@/store'
 
 @Component({
     filters: { time },
@@ -46,7 +47,7 @@ export default class SettingsPage extends Vue {
 
 
   public save(): void {
-    SettingsService.save(this.data)
+    app.setSettings(this.data)
   }
 
   get planMins(): number {

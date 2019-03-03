@@ -1,6 +1,7 @@
 import TogglWebsocketService, { TimeEntry, TogglAction, TogglEvent } from '@/service/toggl/TogglWebsocketService'
 import TogglApiService from '@/service/toggl/TogglApiService'
 import TimeStorage, { TimeEntryStorage } from '@/service/toggl/TimeEntryStorage'
+import { app } from '@/store'
 
 class TogglService {
   protected wsService: TogglWebsocketService
@@ -20,13 +21,16 @@ class TogglService {
 
     this.apiService.getLastLog().then((entries: TimeEntry[]) => {
       this.storage.addEntries(entries)
+      app.updateStat()
     })
 
     this.apiService.getCurrent().then((entry: TimeEntry | null) => {
       if (entry !== null) {
-        this.storage.addEntry(entry)
+        app.updateStat()
       }
     })
+
+    setInterval(app.updateStat, 10000)
   }
 
   protected wsCallback({action, data}: TogglEvent): void {
@@ -37,6 +41,7 @@ class TogglService {
     } else {
       this.storage.removeEntry(data)
     }
+    app.updateStat()
   }
 }
 

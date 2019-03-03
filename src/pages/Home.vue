@@ -20,38 +20,15 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProgressBar from '@/components/ProgressBar.vue'
 import TotalStat from '@/components/TotalStat.vue'
 import DailyStat from '@/components/DailyStat.vue'
-import SettingsService, { Settings } from '@/service/SettingsService'
-import TimeCalc, { Stat, WeeklyStat } from '@/service/TimeCalc'
-import TogglStatCalculator from '@/service/toggl/TogglStatCalculator'
-
-const UPDATE_INTERVAL = 10 * 1000
-
-let timer = 0
+import { Stat, WeeklyStat } from '@/service/TimeCalc'
+import { app } from '@/store'
 
 @Component({
   components: {ProgressBar, TotalStat, DailyStat},
 })
 export default class App extends Vue {
-  protected settings: Settings = SettingsService.get()
-  protected stat: WeeklyStat = {
-    days: [],
-    plannedByNow: 0,
-  }
-
-  public created(): void {
-    this.update()
-    timer = setInterval(() => {
-      this.update()
-    }, UPDATE_INTERVAL)
-  }
-
-  public destroyed(): void {
-    clearInterval(timer)
-  }
-
-  public update(): void {
-    const togglStat = TogglStatCalculator.calcStat()
-    this.stat = TimeCalc.getProgress(this.settings.plan, togglStat, this.settings.workingHours)
+  get stat(): WeeklyStat {
+    return app.stat
   }
 
   get doneByNow(): number {
