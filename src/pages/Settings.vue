@@ -6,12 +6,12 @@
       .col
         input.form-control(
           type="number"
-          v-model="data.workingHours[0]"
+          v-model.number="data.workingHours[0]"
         )
       .col
         input.form-control(
           type="number"
-          v-model="data.workingHours[1]"
+          v-model.number="data.workingHours[1]"
         )
 
     h6 Total planned time: {{ planMins | time }}
