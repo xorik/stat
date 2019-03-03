@@ -47,7 +47,7 @@ export default class SettingsPage extends Vue {
 
 
   public save(): void {
-    app.setSettings(this.data)
+    app.updateSettings(this.data)
   }
 
   get planMins(): number {

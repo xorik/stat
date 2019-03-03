@@ -1,4 +1,4 @@
-import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
+import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import TimeCalc, { WeeklyStat } from '@/service/TimeCalc'
 import TogglStatCalculator from '@/service/toggl/TogglStatCalculator'
 import SettingsService, { Settings } from '@/service/SettingsService'
@@ -14,7 +14,6 @@ export default class AppModule extends VuexModule {
 
   @Mutation
   public setSettings(settings: Settings): void {
-    SettingsService.save(settings)
     this.settings = settings
   }
 
@@ -22,5 +21,12 @@ export default class AppModule extends VuexModule {
   public updateStat(): void {
     const togglStat = TogglStatCalculator.calcStat()
     this.stat = TimeCalc.getProgress(this.settings.plan, togglStat, this.settings.workingHours)
+  }
+
+  @Action
+  public updateSettings(settings: Settings): void {
+    SettingsService.save(settings)
+    this.context.commit('setSettings', settings)
+    this.context.commit('updateStat')
   }
 }
