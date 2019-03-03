@@ -17,11 +17,10 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { State } from 'vuex-class'
 import ProgressBar from '@/components/ProgressBar.vue'
 import TotalStat from '@/components/TotalStat.vue'
 import DailyStat from '@/components/DailyStat.vue'
-import { Settings } from '@/service/SettingsService'
+import SettingsService, { Settings } from '@/service/SettingsService'
 import TimeCalc, { Stat, WeeklyStat } from '@/service/TimeCalc'
 import TogglStatCalculator from '@/service/toggl/TogglStatCalculator'
 
@@ -33,8 +32,7 @@ let timer = 0
   components: {ProgressBar, TotalStat, DailyStat},
 })
 export default class App extends Vue {
-  @State
-  protected settings!: Settings
+  protected settings: Settings = SettingsService.get()
   protected stat: WeeklyStat = {
     days: [],
     plannedByNow: 0,
